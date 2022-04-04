@@ -1,12 +1,6 @@
 <?php
 
-use App\Models\Post;
-use App\Models\User;
-use App\Models\Category;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PostController;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -19,8 +13,22 @@ use App\Http\Controllers\PostController;
 |
 */
 
-Route::get('/', [PostController::class, "index"])->name("home");
-Route::get('/posts/{post:slug}', [PostController::class, "show"])->name("post");
+Route::get('/', function () {
+    return view('posts');
+});
+Route::get('/posts/{post}', function ($slug) {
+    $path = __DIR__."/../resources/posts/{$slug}.html";
+    if (! file_exists($path)){
+        return redirect("/");
+    }
+    $post = cache()->remember("posts.{$slug}",now()->addminutes(5), fn() => file_get_contents($path));
+    return view('post', ["post"=>$post]);
+})->where("post","[A-z_\-]+");
+
+Route::get('/hello', function ()
+{
+    return "Hello World";
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
