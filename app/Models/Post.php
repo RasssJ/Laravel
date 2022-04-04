@@ -12,6 +12,16 @@ class Post extends Model
     //protected $guarded = ["id","created_at"];
     protected $fillable = ["title","body","excerpt","slug","category_id"];
 
+    public function scopeFilter($query,array $filters)
+    {
+        $query->when($filters['search'] ?? false, fn($query,$search)=>
+            $query
+                ->where('title','like','%'.$search.'%')
+                ->orWhere('excerpt','like','%'.$search.'%')
+                ->orWhere('body','like','%'.$search.'%')
+        );
+    }
+
     public function category()
     {
         return $this->belongsTo(Category::class);
