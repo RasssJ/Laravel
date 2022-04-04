@@ -20,7 +20,7 @@
                 </x-slot>
                 <x-post-dropdown-item href="/" :active="request()->routeIs('home')">All</x-post-dropdown-item>
                 @foreach ($categories as $category)
-                    <x-post-dropdown-item href="/categories/{{ $category->slug }}"
+                    <x-post-dropdown-item href="/?category={{ $category->slug }}"
                         :active="request()->is('categories/'.$category->slug)"
                     >
                         {{ ucwords($category->name) }}
