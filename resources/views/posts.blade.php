@@ -1,12 +1,17 @@
-<x-layout>
-    @include("_posts-header")
-
-    <main class="max-w-6xl mx-auto mt-6 lg:mt-20 space-y-6">
-        @if ($posts->count())
-            <x-posts-grid :posts="$posts" />
-        @else
-            <p class="text-center">No posts yet. Pleas check back later.</p>
-        @endif
-    </main>
-
-</x-layout>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/minu.css">
+    <title>Blog posts</title>
+</head>
+<body>
+    <?php foreach ($posts as $post) : ?>
+        <article>
+            <?= $post ?>
+        </article>
+    <?php endforeach; ?>
+</body>
+</html>
