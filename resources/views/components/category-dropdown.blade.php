@@ -13,7 +13,7 @@
     @foreach ($categories as $category)
         <x-post-dropdown-item
             href="/?category={{ $category->slug }}&{{ http_build_query(request()->except('category'))}}"
-            :active="request()->is('categories/'.$category->slug)"
+            :active="request()->has('/?category='.$category->slug)"
         >
             {{ ucwords($category->name) }}
         </x-post-dropdown-item>

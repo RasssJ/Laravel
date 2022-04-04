@@ -8,7 +8,10 @@
         <div class="relative lg:inline-flex bg-gray-100 rounded-xl">
             <x-category-dropdown />
         </div>
-
+        <!--  Author -->
+        <div class="relative lg:inline-flex bg-gray-100 rounded-xl">
+            <x-author-dropdown />
+        </div>
         <!-- Other Filters -->
         {{-- <div class="relative flex lg:inline-flex items-center bg-gray-100 rounded-xl">
             <select class="flex-1 appearance-none bg-transparent py-2 pl-3 pr-9 text-sm font-semibold">
