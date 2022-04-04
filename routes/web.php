@@ -22,18 +22,8 @@ use App\Http\Controllers\PostController;
 Route::get('/', [PostController::class, "index"])->name("home");
 Route::get('/posts/{post:slug}', [PostController::class, "show"])->name("post");
 
-Route::get('/authors/{author:username}', function (User $author) {
-    return view('posts', [
-        "posts"=> $author->posts->load(["category","author"]),
-    ]);
-});
-
-Route::get('/hello', function ()
-{
-    return "Hello World";
-});
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
 require __DIR__.'/auth.php';
